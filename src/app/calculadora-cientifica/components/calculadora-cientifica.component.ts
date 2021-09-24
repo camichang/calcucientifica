@@ -46,10 +46,10 @@ export class CalculadoraCientificaComponent implements OnInit {
     }
     //primeiro digito é '.', juntar com 0 antes do ponto
     if (numConcat === '.' && numAtual === '') {
-      return '0';
+      return '0.';
     }
     //caso '.' digitado e já contenha um '.', apenas retorna
-    if (numConcat === '.' && numAtual.indexOf('.') > -1) {
+    if (numConcat === '.' && numAtual.indexOf('.') > 1) {
       return numAtual;
     }
     return numAtual + numConcat;
@@ -90,7 +90,7 @@ export class CalculadoraCientificaComponent implements OnInit {
   calcular():void{
     if(this.num2 === null){
       let op = this.operacao
-      if(op === 'x2' || op === 'x3' || op === 'raiz' || op === 'pi' || op === '%'){
+      if(op === 'x2' || op === 'x3' || op === 'raiz' || op === 'pi' || op == '%'){
         this.resultado = this.calculadoraCientificaService.calcular(
           parseFloat(this.num1),
           parseFloat(this.num2),
@@ -108,8 +108,8 @@ export class CalculadoraCientificaComponent implements OnInit {
     ).toString();
 
     this.num1 = this.resultado;
-    this.operacao = null
-    this.num2 = null
+    this.operacao = null;
+    this.num2 = null;
   }
 
   get display(): string {
@@ -117,7 +117,7 @@ export class CalculadoraCientificaComponent implements OnInit {
       return this.resultado.toString();
     }
     if (this.num2 !== null) {
-      return this.num2;
+      return this.num2.toString();
     }
     return this.num1.toString();
   }
